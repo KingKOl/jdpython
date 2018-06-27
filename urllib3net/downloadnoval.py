@@ -39,16 +39,17 @@ def grabhtmlpage(_url, ecd='utf-8'):
         _result = _http.request('GET', _url)
         if _result.status != 200:
             return None
+        texthtml = _result.data.decode(ecd)
     except UnicodeDecodeError as e:
         return None
     else:
-        return _result.data.decode(ecd)
+        return texthtml
 
 
 def html2bs(_html):
     try:
         bs = BeautifulSoup(_html, 'html.parser')
-    except UnicodeDecodeError as e:
+    except:
         return None
     else:
         return bs
@@ -64,6 +65,7 @@ def url2bs(_url, ecd='gbk'):
 
 
 def grabbiqukan():
+    # 2_2768 傲世九重天
     mainurl = 'http://www.biqukan.com/'
     nv_index = r'2_2768'
 
